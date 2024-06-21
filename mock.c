@@ -1,9 +1,60 @@
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "movimientos.h"
-#include <string.h>
-#include "time.h"
 #include <conio.h>
+#include <time.h>
+#include <string.h>
+#include "generales.h"
+#include "cliente.h"
+#include "cuenta.h"
+#include "movimientos.h"
+
+///clientes
+
+void cargaMock80Cliente(char nombreCliente[])
+{
+    stCliente clie;
+
+    FILE * archivo = fopen(nombreCliente,"ab");
+    if(archivo)
+    {
+    for(int i=0; i <30;i++)
+    {
+    sprintf(clie.dni, "%d", i);
+    clie.nroCliente=i;
+    clie.id=i;
+
+        fwrite(&clie,sizeof(stCliente),1,archivo);
+    }
+        fclose(archivo);
+    }
+}
+
+
+/// cuentas
+void cargaMock80Cuenta(char nombre[])
+{
+    stCuentas cuenta;
+    FILE* archivo= fopen(nombre,"ab");
+    if(archivo)
+    {
+        for(int i=0; i <30;i++)
+        {
+        cuenta.costoMensual=30;
+        cuenta.eliminado = 0;
+        cuenta.id=i;
+        cuenta.idCliente=i;
+        cuenta.nroCuenta=i;
+        cuenta.saldo=0;
+        cuenta.tipoDeCuenta=1;
+        fwrite(&cuenta,sizeof(stCuentas),1,archivo);
+        }
+
+        fclose(archivo);
+    }
+
+}
+///movimientos
 
 void getDayMonthYeard(stMovimientos* M)
 {
@@ -41,7 +92,7 @@ void getDayMonthYeard(stMovimientos* M)
 void idCuenta(stMovimientos* M, char nombreArchivoCu[])
 {
 
-    M->idCuenta = rand()%(cuentaElementosArchivo(nombreArchivoCu)+1);
+    M->idCuenta = rand()%(cuentaRegistrosGral(nombreArchivoCu,sizeof(stCuentas)));
 }
 
 void eliminado(stMovimientos* M)
@@ -65,7 +116,6 @@ void importeydetalle(stMovimientos* M)
     {
         M->importe = -1*(rand() % 300001);
     }
-
 //generar detalle
     if(M->importe > 0)
     {
@@ -91,12 +141,15 @@ void mockArchivo (char nombreArchivoMov[], char nombreArchivoCu[], int cantidad)
         idCuenta(&movimiento,nombreArchivoCu);
         importeydetalle(&movimiento);
         eliminado(&movimiento);
-        if(movimiento.eliminado==0)
+        if(movimiento.eliminado==1)
         {
-            buscarcuentaymodificarsaldo(nombreArchivoCu,movimiento.idCuenta,movimiento.importe);
+            buscarCuentaModificarSaldo(nombreArchivoCu,movimiento.idCuenta,movimiento.importe);
         }
-        movimiento.id=cuentaElementosArchivo(nombreArchivoMov)+1;
+        movimiento.id=cuentaRegistrosGral(nombreArchivoMov,sizeof(stMovimientos));
         cargarUnMovimientoArchivo(nombreArchivoMov,nombreArchivoCu,movimiento);
     }
 }
+
+
+
 
