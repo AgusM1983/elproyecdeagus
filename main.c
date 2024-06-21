@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
+#include <time.h>
 #include <string.h>
+#include "generales.h"
 #include "cliente.h"
 #include "cuenta.h"
 #include "movimientos.h"
-#include "generales.h"
-#include "mock.h"
 
 int main() {
     /// eleccion de menu y clave??
