@@ -1,6 +1,6 @@
 #ifndef CUENTA_H_INCLUDED
 #define CUENTA_H_INCLUDED
-#include "movimientos.h"
+
 typedef struct {
     int id; /// campo único y autoincremental
     int idCliente; /// Id del Cliente dueño de la Cuenta;
@@ -12,10 +12,11 @@ typedef struct {
 
 } stCuentas;
 
-stCuentas cargaManualUnaCuenta(char nombre[]);
-void buscarcuentaymodificarsaldo(char nombreArchivoCu[],int idCuenta, float importe);
-void cargaMockunaCuenta(char nombre[]);
 void muestraUnaCuenta(stCuentas cuenta);
-int* buscarCuentaxNumerodeCta(char nombre[], int numero);
-int cuentaregistroscuentas(char nombreArchivo[]);
+void mostrarArchivoCuenta(char nombreCuenta[]);
+void mostrarCuentasxIdCliente(char archivoCuenta[], int idCliente);
+int verificarNroDeCuenta(int numeroCuenta, char nombreCuenta[]); /// -1 si no y nroCuenta si esta
+int traducirNroCuentaIdCuenta(int nroCuenta, char nombreCuenta[]);
+void buscarCuentaModificarSaldo(char nombreArchivoCu[],int idCuenta, float importe);
+
 #endif // CUENTA_H_INCLUDED
