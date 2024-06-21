@@ -35,14 +35,16 @@ void menuEmpleados() {
         printf("7. Baja Cuenta\n");
         printf("8. Modificar Cuenta\n");
         printf("9. Consultar Cuenta\n");
-        printf("10. Listar Cuentas por Cliente\n");
-        printf("11. Alta Movimiento\n");
-        printf("12. Baja Movimiento\n");
-        printf("13. Modificar Movimiento\n");
-        printf("14. Consultar Movimiento\n");
-        printf("15. Listar Movimientos por Cuenta\n");
-        printf("16. Listar Movimientos por Fecha\n");
-        printf("17. Cargar Movimientos Aleatorios\n");
+        printf("10. Listar Cuentas por Cliente\n"); /// tengo la funcion
+        printf("11. Alta Movimiento\n"); /// tengo la funcion
+        printf("12. Baja Movimiento\n"); /// usar funcion modificar movimiento pero solo de 0 a 1
+        printf("13. Modificar Movimiento\n"); /// tengo la funcion
+        printf("14. Consultar Movimiento\n"); /// tengo la funcion
+        printf("15. Listar Movimientos por Cuenta\n");  
+        printf("16. Listar Movimientos por Fecha\n"); /// tengo la funcion
+        printf("17. Cargar Movimientos Aleatorios\n"); /// mock ver el tema de las cuotas
+        printf("18. Proceso de salvar datos\n");
+        printf("19. Proceso cargar cuotas mensuales datos\n");
         printf("0. Salir\n");
         printf("Seleccione una opcion: ");
         scanf("%d", &opcion);
